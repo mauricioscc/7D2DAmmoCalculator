@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7D2D Calculadora de Munição</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body class="bg-zinc-950 text-gray-200 min-h-screen p-6">
+
+    <div class="max-w-5xl mx-auto">
+        <header class="mb-8 text-center border-b border-red-800 pb-4">
+            <h1 class="text-5xl text-red-600 tracking-wider">7 DAYS TO DIE</h1>
+            <h2 class="text-3xl text-gray-400 teko">AMMO CALCULATOR - 7.62mm</h2>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <!-- COLUNA ESQUERDA: CONTROLES, BÔNUS E DICA -->
+            <div class="space-y-6">
+                <div class="bg-zinc-900 p-5 rounded border border-zinc-800">
+                    <h3 class="text-2xl text-red-500 mb-4 teko">CONFIGURAÇÕES</h3>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm mb-1 text-gray-400">Quantidade de Balas (7.62mm)</label>
+                        <input type="number" id="ammo-qty" value="100" min="1" class="w-full bg-zinc-800 border border-zinc-700 rounded px-3 py-2 text-white focus:outline-none focus:border-red-600">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm mb-1 text-gray-400">Nível: Advanced Engineering</label>
+                        <input type="range" id="skill-level" min="0" max="5" value="0" class="w-full accent-red-600">
+                        <div class="flex justify-between text-xs text-gray-500 mt-1">
+                            <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 space-y-2">
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" id="bulk-crafting" class="accent-red-600 w-4 h-4">
+                            <span class="text-sm">Livros Sniper 7/7 (Bulk Crafting)</span>
+                        </label>
+                        
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" id="chem-station" class="accent-red-600 w-4 h-4">
+                            <span class="text-sm">Usar Chemistry Station (Pólvora)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- BÔNUS ATUAL -->
+                <div class="bg-zinc-900 p-5 rounded border border-red-900/50">
+                    <h3 class="text-xl text-red-500 mb-2 teko">BÔNUS ATUAL</h3>
+                    <ul id="active-bonuses" class="text-sm text-gray-400 space-y-1 list-disc list-inside">
+                        <!-- Preenchido via JS -->
+                    </ul>
+                </div>
+
+                <!-- DICA DE SOBREVIVÊNCIA -->
+                <div class="bg-zinc-900 p-5 rounded border border-zinc-800 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-red-600"></div>
+                    <h3 class="text-xl text-red-500 mb-2 teko flex items-center">
+                        <span class="mr-2">💡</span> DICA DE SOBREVIVÊNCIA
+                    </h3>
+                    <p class="text-sm text-gray-400 leading-relaxed" id="survival-tip">
+                        Ajuste os valores acima para ver a economia de recursos!
+                    </p>
+                </div>
+            </div>
+
+            <!-- COLUNA DIREITA: RESULTADOS -->
+            <div class="md:col-span-2 space-y-6">
+                
+                <!-- TEMPOS DE PRODUÇÃO -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-zinc-900 p-5 rounded border border-zinc-800 flex flex-col justify-center">
+                        <h3 class="text-xl text-gray-300 teko mb-1">TEMPO DE FORJA (FORGE)</h3>
+                        <p class="text-xs text-gray-500 mb-3">Preparo de Bullet Tips e Casings.</p>
+                        <div class="text-4xl text-red-500 teko font-bold" id="forge-time">
+                            00:00
+                        </div>
+                    </div>
+
+                    <div class="bg-zinc-900 p-5 rounded border border-zinc-800 flex flex-col justify-center">
+                        <h3 class="text-xl text-gray-300 teko mb-1">TEMPO DE MONTAGEM (WORKBENCH)</h3>
+                        <p class="text-xs text-gray-500 mb-3">Montagem final das munições 7.62mm.</p>
+                        <div class="text-4xl text-red-500 teko font-bold" id="workbench-time">
+                            00:00
+                        </div>
+                    </div>
+
+                    <!-- NOVO BLOCO: TEMPO TOTAL (Ocupa as duas colunas na visualização desktop) -->
+                    <div class="md:col-span-2 bg-zinc-900 p-5 rounded border border-red-900/60 flex items-center justify-between">
+                        <div>
+                            <h3 class="text-2xl text-gray-300 teko mb-1">TEMPO TOTAL</h3>
+                            <p class="text-xs text-gray-500">Soma da Forja + Workbench.</p>
+                        </div>
+                        <div class="text-5xl text-red-600 teko font-bold" id="total-time">
+                            00:00
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUBMATERIAIS -->
+                <div class="bg-zinc-900 p-6 rounded border border-zinc-800">
+                    <h3 class="text-2xl text-gray-300 teko mb-4 border-b border-zinc-800 pb-2">SUBMATERIAIS NECESSÁRIOS</h3>
+                    <div class="grid grid-cols-3 gap-4" id="submaterials-list">
+                        <!-- Preenchido via JS -->
+                    </div>
+                </div>
+
+                <!-- MATERIAIS BÁSICOS -->
+                <div class="bg-zinc-900 p-6 rounded border border-zinc-800">
+                    <h3 class="text-2xl text-gray-300 teko mb-4 border-b border-zinc-800 pb-2">RECURSOS BÁSICOS (MATÉRIA-PRIMA)</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4" id="basic-materials-list">
+                        <!-- Preenchido via JS -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="js/calculator.js"></script>
+</html>
