@@ -1,4 +1,4 @@
-# 🧟‍♂️ 7 Days to Die - Ammo Calculator MVP (7.62mm)
+# 🧟‍♂️ 7 Days to Die - Ammo Calculator (7.62mm)
 
 Uma calculadora web interativa projetada para planejar e otimizar a produção de munição 7.62mm no jogo **7 Days to Die** (3.3.0 Stable). Esta ferramenta ajuda os jogadores a calcular o tempo exato e a quantidade de recursos (matéria-prima e submateriais) necessários, considerando os redutores de custo e tempo proporcionados pelas skills, estações de trabalho e coleções de livros.
 
