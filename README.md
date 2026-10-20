@@ -33,7 +33,7 @@ O projeto continua em expansão! As próximas implementações planejadas para a
 **Acesso Rápido (Online):**  
 Acesse a calculadora diretamente pelo navegador:  
 
-https://mauricioscc.github.io/7d2d-ammo-calc/
+[Calculadora](https://mauricioscc.github.io/7D2DAmmoCalculator/)
 
 ## 📂 Estrutura do Projeto
 
